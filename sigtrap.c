@@ -21,14 +21,6 @@
 
 static char **cmd_argv;
 
-void str_toupper(char *str)
-{
-	while (*str != '\0') {
-		*str = toupper(*str);
-		++str;
-	}
-}
-
 void handle(const int sig)
 {
 	static const char *err_msg_pre = "Couldn't exec to ";
@@ -64,13 +56,15 @@ int main(const int argc, char *argv[])
 	char *signame;
 	size_t signame_len;
 	int signum;
+	char *str;
 
 	if (argc < 3) {
 		fprintf(stderr, "Usage: sigtrap <signal> <command> [arguments...]\n");
 		exit(EXIT_FAILURE);
 	}
 
-	str_toupper(argv[1]);
+	for (str = argv[1]; *str != '\0'; ++str)
+		*str = toupper(*str);
 	if (!strcmp(argv[1], "USR1"))
 		signum = SIGUSR1;
 	else if (!strcmp(argv[1], "USR2"))
