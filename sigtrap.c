@@ -80,7 +80,7 @@ int main(const int argc, char *argv[])
 
 	sact = (struct sigaction *)malloc(sizeof (struct sigaction));
 	sact->sa_handler = handle;
-	sigemptyset(&(sact->sa_mask));
+	sigemptyset(&sact->sa_mask);
 	sact->sa_flags = SA_RESETHAND;
 	if (sigaction(signum, sact, NULL)) {
 		perror("Couldn't register signal handler");
