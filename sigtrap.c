@@ -30,7 +30,7 @@ void handle(const int sig)
 
 	printf("Received signal %d\n", sig);
 
-	set = (sigset_t *)malloc(sizeof (sigset_t));
+	set = malloc(sizeof (sigset_t));
 	sigemptyset(set);
 	if (sigaddset(set, sig)) {
 		perror("Couldn't add signal to unblock set");
@@ -43,7 +43,7 @@ void handle(const int sig)
 
 	execvp(cmd_argv[0], cmd_argv);
 
-	err_msg = (char *)malloc(strlen(err_msg_pre) + strlen(cmd_argv[0]));
+	err_msg = malloc(strlen(err_msg_pre) + strlen(cmd_argv[0]));
 	strcpy(err_msg, err_msg_pre);
 	strcat(err_msg, cmd_argv[0]);
 	perror(err_msg);
@@ -71,14 +71,14 @@ int main(const int argc, char *argv[])
 		signum = SIGUSR2;
 	else {
 		signame_len = sizeof argv[1] + 3;
-		signame = (char *)malloc(signame_len);
+		signame = malloc(signame_len);
 		snprintf(signame, signame_len, "SIG%s", argv[1]);
 		signum = strtosigno(signame);
 		free(signame);
 	}
 	cmd_argv = &argv[2];
 
-	sact = (struct sigaction *)malloc(sizeof (struct sigaction));
+	sact = malloc(sizeof (struct sigaction));
 	sact->sa_handler = handle;
 	sigemptyset(&sact->sa_mask);
 	sact->sa_flags = SA_RESETHAND;
