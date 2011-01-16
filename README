@@ -1,0 +1,34 @@
+sigtrap
+=======
+Taylor Hedberg <tmhedberg@gmail.com>
+
+sigtrap is a simple utility that can execute an arbitrary Unix command when a
+particular POSIX IPC signal is received. After registering the signal handler,
+the process sleeps until awakened by the signal.
+
+Compile sigtrap using gcc with:
+
+----
+gcc -o sigtrap sigtrap.c -liberty
+----
+
+Usage: +sigtrap <signal> <command> [arguments...]+
+
+sigtrap can react to the following signals:
+
+* USR1
+* USR2
+* HUP
+* INT
+* ILL
+* BUS
+* FPE
+* URG
+* PWR
+* SYS
+
+Using SIGUSR1 or SIGUSR2 is recommended, as these signals have no pre-defined
+standard meaning that must be overridden.
+
+
+// vim:ft=asciidoc:lbr:tw=80
