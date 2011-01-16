@@ -12,22 +12,26 @@ Compile sigtrap using gcc with:
 gcc -o sigtrap sigtrap.c -liberty
 ----
 
-Usage: +sigtrap <signal> <command> [arguments...]+
+Usage: 
+
+----
+sigtrap <signal> <command> [arguments...]
+----
 
 sigtrap can react to the following signals:
 
-* USR1
-* USR2
-* HUP
-* INT
-* ILL
-* BUS
-* FPE
-* URG
-* PWR
-* SYS
+* +USR1+
+* +USR2+
+* +HUP+
+* +INT+
+* +ILL+
+* +BUS+
+* +FPE+
+* +URG+
+* +PWR+
+* +SYS+
 
-Using SIGUSR1 or SIGUSR2 is recommended, as these signals have no pre-defined
+Using +SIGUSR1+ or +SIGUSR2+ is recommended, as these signals have no pre-defined
 standard meaning that must be overridden.
 
 
